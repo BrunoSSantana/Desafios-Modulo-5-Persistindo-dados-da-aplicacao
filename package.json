@@ -1,5 +1,5 @@
 {
-  "name": "launchbase-rocketseat-desafio-4-controle-de-academia",
+  "name": "Desafios-Modulo-5-Persistindo-dados-da-aplicacao",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrunoSSantana/Launchbase-Rocketseat-Desafio-4-Controle-de-Academia.git"
+    "url": "git+https://github.com/BrunoSSantana/Desafios-Modulo-5-Persistindo-dados-da-aplicacao.git.git"
   },
   "author": "BrunoSSantana",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BrunoSSantana/Launchbase-Rocketseat-Desafio-4-Controle-de-Academia/issues"
+    "url": "https://github.com/BrunoSSantana/Desafios-Modulo-5-Persistindo-dados-da-aplicacao.git/issues"
   },
-  "homepage": "https://github.com/BrunoSSantana/Launchbase-Rocketseat-Desafio-4-Controle-de-Academia#readme",
+  "homepage": "https://github.com/BrunoSSantana/Desafios-Modulo-5-Persistindo-dados-da-aplicacao.git#readme",
   "dependencies": {
     "express": "^4.17.1",
     "method-override": "^3.0.0",
