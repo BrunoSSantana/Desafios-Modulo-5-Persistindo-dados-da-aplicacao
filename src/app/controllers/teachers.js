@@ -5,7 +5,10 @@ const db = require('../../config/db')
 module.exports = {
 
     index(req, res) {
-        return res.render('teachers/index')
+        db.query(`SELECT * FROM teachers`, function(err, results){
+            if(err) return res.send("Database Error!")
+            return res.render("teachers/index", {teachers: results.rows})
+        })
     },
     create(req, res) {
         return res.render('teachers/create')
@@ -31,7 +34,7 @@ module.exports = {
                 create_at
             ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
-        `        
+        `      
         const values = [
             req.body.avatar_url,
             req.body.name,

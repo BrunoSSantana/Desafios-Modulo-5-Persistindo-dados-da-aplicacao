@@ -1,11 +1,12 @@
-
-const { age, dateUtc, graduation, dateTeacher } = require('../../lib/utils')
-
+const student = require('../models/student')
 module.exports = {
 
     index(req, res) {
-        return res.render('students/index')
+        student.all(function(students){
+            return res.render("students/index", {students})
+        })
     },
+
     create(req, res) {
         return res.render('students/create')
     },
@@ -19,8 +20,10 @@ module.exports = {
             }
         }
         
-    
-        return
+        student.create(req.body, function(students){
+            return res.redirect(`students/${students.id}`)
+        })
+        
     },
     show(req, res) {
            
@@ -40,7 +43,9 @@ module.exports = {
             }
         }
     
-        return 
+        student.create(req.body, function(student) {
+            return res.render(`student/${student.id}`)
+        })
     },
     delete(req, res) {
     

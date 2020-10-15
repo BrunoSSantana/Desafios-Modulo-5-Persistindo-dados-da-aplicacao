@@ -26,7 +26,7 @@ module.exports = {
     },
     
     dateTeacher(timestamp) {
-        data = new Date(timestamp)
+        const data = new Date(timestamp)
 
         const dia = data.getDate().toString().padStart(2, "0")
         const mes = (data.getMonth()+1).toString().padStart(2, "0")
@@ -35,7 +35,7 @@ module.exports = {
         return `${dia}/${mes}/${ano}`
     },
     dateUtc(timestamp) {
-        data = new Date(timestamp)
+        const data = new Date(timestamp)
 
         const dia = data.getUTCDate().toString().padStart(2, "0")
         const mes = (data.getUTCMonth()+1).toString().padStart(2, "0")
