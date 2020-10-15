@@ -1,19 +1,18 @@
 const db = require('../../config/db')
-const {dateUtc, date} = require('../../lib/utils')
+const {date} = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
         db.query(`SELECT * FROM students`, function(err, results){
-            if(err) return res.send("Database Error!")
-
+            if(err) return res.send(`Database Error! + ${err}`)
             callback(results.rows)
         })
     },
     create(data, callback) {
         const query = `
-            INSERT TO students (
-                avatar_url,
+            INSERT INTO students (
                 name,
+                avatar_url,
                 birth_date,
                 email,
                 school_year,
@@ -23,17 +22,17 @@ module.exports = {
             RETURNING id
         `
         const values = [
-            data.avatar_url,
             data.name,
-            dateUtc(data.birth_date).iso,
+            data.avatar_url,
+            date(data.birth_date).iso,
             data.email,
             data.school_year,
             data.workload,
-            dateUtc(Date.now()).iso
+            date(Date.now()).iso
         ]
 
         db.query(query, values, function(err, results){
-            if(err) return res.send("Database Error!")
+            if(err) return res.send(`Database Error! + ${err}`)
 
             callback(results.rows[0])
         })

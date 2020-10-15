@@ -34,7 +34,7 @@ module.exports = {
         
         return `${dia}/${mes}/${ano}`
     },
-    dateUtc(timestamp) {
+    date(timestamp) {
         const data = new Date(timestamp)
 
         const dia = data.getUTCDate().toString().padStart(2, "0")
