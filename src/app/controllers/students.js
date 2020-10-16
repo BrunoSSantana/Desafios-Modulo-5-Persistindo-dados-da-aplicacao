@@ -1,4 +1,5 @@
 const student = require('../models/student')
+const {age, date, education} = require('../../lib/utils')
 module.exports = {
 
     index(req, res) {
@@ -6,7 +7,6 @@ module.exports = {
             return res.render("students/index", {students})
         })
     },
-
     create(req, res) {
         return res.render('students/create')
     },
@@ -26,12 +26,25 @@ module.exports = {
         
     },
     show(req, res) {
-           
-        return
+        student.find(req.params.id, function(student){
+            if(!student) return res.send("Student not found!")
+
+            student.age = age(student.birth_date)
+            student.create_at = date(student.create_at).format
+            student.birth_date = date(student.birth_date).format
+            student.school_year = education(student.school_year)
+
+            return res.render("students/show", {student})
+        })
     },
     edit(req, res) {
+        student.find(req.params.id, function(student){
+            if(!student) return res.send("Student not found!")
 
-        return
+            student.birth_date = date(student.birth_date).iso
+
+            return res.render("students/edit", {student})
+        })
     },
     update(req, res) {
     
@@ -43,13 +56,14 @@ module.exports = {
             }
         }
     
-        student.create(req.body, function(student) {
-            return res.render(`student/${student.id}`)
+        student.update(req.body, function(){
+            return res.redirect(`students/${req.body.id}`)
         })
     },
     delete(req, res) {
-    
-        return
+        student.delete(req.body.id, function(){
+            return res.redirect('/students')
+        })
     }
 
 }
