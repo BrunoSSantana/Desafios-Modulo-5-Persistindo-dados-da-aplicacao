@@ -1,20 +1,17 @@
-
-const { age, dateUtc, graduation, dateTeacher } = require('../../lib/utils')
-const db = require('../../config/db')
-
+const teacher = require('../models/teacher')
+const {age, date, education} = require('../../lib/utils')
 module.exports = {
 
     index(req, res) {
-        db.query(`SELECT * FROM teachers`, function(err, results){
-            if(err) return res.send("Database Error!")
-            return res.render("teachers/index", {teachers: results.rows})
+        teacher.all(function(teachers){
+            return res.render("teachers/index", {teachers})
         })
     },
     create(req, res) {
         return res.render('teachers/create')
     },
     post(req, res) {
-    
+
         const keys = Object.keys(req.body)
         
         for (key of keys) {
@@ -22,43 +19,32 @@ module.exports = {
                 return res.send(`Preencha todos os campos`)
             }
         }
-    
-        const query = `
-            INSERT INTO teachers (
-                avatar_url,
-                name,
-                birth_date,
-                education_level,
-                class_type,
-                subjects_taught,
-                create_at
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING id
-        `      
-        const values = [
-            req.body.avatar_url,
-            req.body.name,
-            dateUtc(req.body.birth_date).iso,
-            req.body.education_level,
-            req.body.classtype,
-            req.body.subjects_taught,
-            dateUtc(Date.now()).iso,
-        ]
-// LEMBRETE: REFATORAR A ENTRADA DE DADOS
-        db.query(query, values, function(err, results){
-            if(err) return res.send("Database Error!")
-            return res.redirect(`/teachers/${results.rows[0].id}`)
+        
+        teacher.create(req.body, function(teachers){
+            return res.redirect(`teachers/${teachers.id}`)
         })
-    
-        return
+        
     },
     show(req, res) {
-    
-        return
+        teacher.find(req.params.id, function(teacher){
+            if(!teacher) return res.send("teacher not found!")
+
+            teacher.age = age(teacher.birth_date)
+            teacher.create_at = date(teacher.create_at).format
+            teacher.birth_date = date(teacher.birth_date).format
+            teacher.school_year = education(teacher.school_year)
+
+            return res.render("teachers/show", {teacher})
+        })
     },
     edit(req, res) {
-    
-        return
+        teacher.find(req.params.id, function(teacher){
+            if(!teacher) return res.send("teacher not found!")
+
+            teacher.birth_date = date(teacher.birth_date).iso
+
+            return res.render("teachers/edit", {teacher})
+        })
     },
     update(req, res) {
     
@@ -70,11 +56,14 @@ module.exports = {
             }
         }
     
-        return 
+        teacher.update(req.body, function(){
+            return res.redirect(`teachers/${req.body.id}`)
+        })
     },
     delete(req, res) {
-    
-        return
+        teacher.delete(req.body.id, function(){
+            return res.redirect('/teachers')
+        })
     }
 
 }
