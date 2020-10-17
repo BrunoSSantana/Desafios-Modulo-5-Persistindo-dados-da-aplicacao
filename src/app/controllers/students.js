@@ -1,10 +1,11 @@
-
-const { age, dateUtc, graduation, dateTeacher } = require('../../lib/utils')
-
+const student = require('../models/student')
+const {age, date, education} = require('../../lib/utils')
 module.exports = {
 
     index(req, res) {
-        return res.render('students/index')
+        student.all(function(students){
+            return res.render("students/index", {students})
+        })
     },
     create(req, res) {
         return res.render('students/create')
@@ -19,16 +20,31 @@ module.exports = {
             }
         }
         
-    
-        return
+        student.create(req.body, function(students){
+            return res.redirect(`students/${students.id}`)
+        })
+        
     },
     show(req, res) {
-           
-        return
+        student.find(req.params.id, function(student){
+            if(!student) return res.send("Student not found!")
+
+            student.age = age(student.birth_date)
+            student.create_at = date(student.create_at).format
+            student.birth_date = date(student.birth_date).format
+            student.school_year = education(student.school_year)
+
+            return res.render("students/show", {student})
+        })
     },
     edit(req, res) {
+        student.find(req.params.id, function(student){
+            if(!student) return res.send("Student not found!")
 
-        return
+            student.birth_date = date(student.birth_date).iso
+
+            return res.render("students/edit", {student})
+        })
     },
     update(req, res) {
     
@@ -40,11 +56,14 @@ module.exports = {
             }
         }
     
-        return 
+        student.update(req.body, function(){
+            return res.redirect(`students/${req.body.id}`)
+        })
     },
     delete(req, res) {
-    
-        return
+        student.delete(req.body.id, function(){
+            return res.redirect('/students')
+        })
     }
 
 }

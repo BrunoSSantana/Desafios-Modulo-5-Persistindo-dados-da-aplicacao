@@ -1,19 +1,19 @@
 const express = require('express')
 const routes = express.Router()
-const instructors = require('./app/controllers/instructors')
+const teachers = require('./app/controllers/teachers')
 const students = require('./app/controllers/students')
 
 routes.get('/', function(req, res) {
-    return res.redirect('/instructors')
+    return res.redirect('/teachers')
 })
 
-routes.get('/instructors', instructors.index)
-routes.get("/instructors/create", instructors.create)
-routes.post("/instructors", instructors.post)
-routes.get("/instructors/:id", instructors.show)
-routes.get("/instructors/:id/edit", instructors.edit)
-routes.put("/instructors", instructors.update)
-routes.delete("/instructors", instructors.delete)
+routes.get('/teachers', teachers.index)
+routes.get("/teachers/create", teachers.create)
+routes.post("/teachers", teachers.post)
+routes.get("/teachers/:id", teachers.show)
+routes.get("/teachers/:id/edit", teachers.edit)
+routes.put("/teachers", teachers.update)
+routes.delete("/teachers", teachers.delete)
 
 /*  */
 

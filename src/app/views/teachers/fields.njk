@@ -5,98 +5,98 @@
             type="url" 
             name="avatar_url" 
             placeholder="http://"
-            value="{{instructor.avatar_url}}"
+            value="{{teacher.avatar_url}}"
             >
         </div>
     </div>
 
     <div class="item">
-        <div>Nome Completo</div>
+        <div>Full Name</div>
         <div>
             <input 
             type="text" 
             name="name"
             placeholder="Seu Nome"
-            value="{{instructor.name}}"
+            value="{{teacher.name}}"
             >
         </div>
     </div>
 
     <div class="item">
-        <div>Data de Nascimento</div>
+        <div>Birthdate</div>
         <div>
             <input 
             type="date"
-            name="birth"
-            value="{{instructor.birth}}"
+            name="birth_date"
+            value="{{teacher.birth_date}}"
             >
         </div>
     </div>
 
     <div class="item">
-        <div>Grau de Escolaridade</div>
+        <div>Educational level</div>
         <div>
-            <select name="grau_de_escolaridade" >
+            <select name="education_level" >
                 <option 
                     value="esi"
-                    {% if instructor.grau_de_escolaridade == "esi" %}
+                    {% if teacher.education_level == "esi" %}
                     selected
                     {% endif %}
-                >Ensino Superior Incompleto</option>
+                >Incomplete Higher Education</option>
                 <option 
                     value="esc"
-                    {% if instructor.grau_de_escolaridade == "esc" %}
+                    {% if teacher.education_level == "esc" %}
                     selected
                     {% endif %}
-                    >Ensino Superior Completo</option>
+                    >Complete Higher Education</option>
                 <option
                     value="m"
-                    {% if instructor.grau_de_escolaridade == "m" %}
+                    {% if teacher.education_level == "m" %}
                     selected
                     {% endif %}
-                    >Mestrado</option>
+                    >Master's</option>
                 <option 
                     value="d"
-                    {% if instructor.grau_de_escolaridade == "d" %}
+                    {% if teacher.education_level == "d" %}
                     selected
                     {% endif %}
-                    >Doutorado</option>
+                    >Doctorate degree</option>
             </select>
         </div>
     </div>
 
     <div class="item">
-        <div>Tipo de aula</div>
+        <div>Class type</div>
         <div>
             <span><input 
             type="radio" 
-            name="tipo_de_aula" 
+            name="class_type" 
             value="P"
-            {% if instructor.tipo_de_aula == "P" %}
+            {% if teacher.class_type == "P" %}
             checked
             {% endif %}
-            >Presencial</span>
+            >Presential</span>
             <span><input 
             type="radio" 
-            name="tipo_de_aula" 
+            name="class_type" 
             value="D"
-            {% if instructor.tipo_de_aula == "D" %}
+            {% if teacher.class_type == "D" %}
             checked
             {% endif %}
-            >Distância</span>
+            >Distance</span>
         </div>
     </div>
 
     <div class="item">
-        <div>Área de Atuação</div>
+        <div>Subjects taught</div>
         <div>
             <input type="text"
-            name="area_de_atuacao"
+            name="subjects_taught"
             placeholder="Ex.: Musculação, Crosfit"
-            value="{{instructor.area_de_atuacao}}"
+            value="{{teacher.subjects_taught}}"
             >
 
         </div>
     </div>
 
-    <button type="submit">Salvar</button>
+    <button type="submit">Save</button>
