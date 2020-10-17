@@ -15,13 +15,13 @@ module.exports = {
     graduation(graduation) {
         switch(graduation) {
             case 'esi':
-                return 'Ensino Superior Incompconsto'
+                return 'University education Incomplete'
             case 'esc':
-                return 'Ensino Superior Compconsto'
+                return 'University education Complete'
             case 'm':
-                return 'Mestrado'
+                return 'Masters'
             case 'd':
-                return 'Doutorado'
+                return 'Doctorate'
         }
     },
     

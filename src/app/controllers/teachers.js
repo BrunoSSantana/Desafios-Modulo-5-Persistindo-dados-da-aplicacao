@@ -1,5 +1,5 @@
 const teacher = require('../models/teacher')
-const {age, date, education} = require('../../lib/utils')
+const {age, date, graduation} = require('../../lib/utils')
 module.exports = {
 
     index(req, res) {
@@ -32,7 +32,8 @@ module.exports = {
             teacher.age = age(teacher.birth_date)
             teacher.create_at = date(teacher.create_at).format
             teacher.birth_date = date(teacher.birth_date).format
-            teacher.school_year = education(teacher.school_year)
+            teacher.subjects_taught = teacher.subjects_taught.split(",")
+            teacher.education_level = graduation(teacher.education_level)
 
             return res.render("teachers/show", {teacher})
         })
