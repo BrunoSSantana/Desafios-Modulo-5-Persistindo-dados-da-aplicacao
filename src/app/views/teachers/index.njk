@@ -3,7 +3,16 @@
 {% block content %}
 
     <div class="card table-container">
-        
+        <div class="header">
+            <a href="/teachers/create">New</a>
+            <form action="/teachers" method="GET">
+                <input
+                type="text"
+                name="filter"
+                placeholder="Filtrar">
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
         <table width="100%">
             <thead>
                 <tr>
@@ -23,7 +32,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <a href="/teachers/create">New</a>
+        
     </div>
     
 {% endblock content %}

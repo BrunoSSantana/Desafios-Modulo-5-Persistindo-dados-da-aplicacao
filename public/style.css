@@ -175,6 +175,7 @@ input[type="email"] {
 input::placeholder {
     color: var(--white);
 }
+.header a,
 .table-container > a,
 button[type="submit"],
 a.button {
@@ -270,9 +271,29 @@ tbody tr td:first-child span{
     background-size: cover;
     border-radius: 50%;
 }
-
 .table-container a {
     display: block;
     width: 60px;
     text-decoration: none;
+}
+
+/*filters*/
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.header form {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    align-items: center;
+}
+.header form button {
+    margin: 0 0 0 8px;
+}
+
+.header form input {
+    padding: 4px 8px;
 }
