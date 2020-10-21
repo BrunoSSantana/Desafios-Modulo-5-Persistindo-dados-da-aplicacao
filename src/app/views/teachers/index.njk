@@ -17,7 +17,8 @@
             <thead>
                 <tr>
                     <th>teacher</th>
-                    <th>Atendimento</th>
+                    <th>Attendence</th>
+                    <th>Students</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         <td><span style="background-image: url({{teacher.avatar_url}})" ></span></td>
                         <td>{{teacher.name}}</td>
                         <td>{{teacher.subjects_taught}}</td>
+                        <td>{{teacher.total_students}}</td>
                         <td><a href="/teachers/{{teacher.id}}">ir</a></td>
                     </tr>
                 {% endfor %}

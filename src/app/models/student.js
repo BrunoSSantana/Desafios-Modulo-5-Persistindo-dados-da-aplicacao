@@ -1,4 +1,4 @@
-const db = require('../../config/dbs')
+const db = require('../../config/db')
 const {date} = require('../../lib/utils')
 
 module.exports = {
@@ -19,8 +19,9 @@ module.exports = {
                 email,
                 school_year,
                 workload,
-                create_at
-            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
+                create_at,
+                teacher_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
             RETURNING id
         `
         const values = [
@@ -30,7 +31,8 @@ module.exports = {
             data.email,
             data.school_year,
             data.workload,
-            date(Date.now()).iso
+            date(Date.now()).iso,
+            data.teacher
         ]
 
         db.query(query, values, function(err, results){
@@ -47,14 +49,15 @@ module.exports = {
     },
     update(data, calback){
         const query = `
-            UPDATE students SET
+        UPDATE students SET
             name=($1),
             avatar_url=($2),
             birth_date=($3),
             email=($4),
             school_year=($5),
-            workload=($6)
-            WHERE id = $7
+            workload=($6),
+            teacher_id=($7)
+        WHERE id = $8
         `
         const values = [
             data.name,
@@ -63,6 +66,7 @@ module.exports = {
             data.email,
             data.school_year,
             data.workload,
+            data.teacher,
             data.id
         ]
         db.query(query, values, function(err, results){
@@ -76,6 +80,16 @@ module.exports = {
             if(err) throw `Database Error! ${err}`
 
             return callback()
+        })
+    },
+    teacherOptions(callback){
+        db.query(`
+        SELECT name, id
+        FROM teachers 
+        `, function(err, results){
+            if(err) throw `Database Error! ${err}`
+
+            callback(results.rows)
         })
     }
 }
