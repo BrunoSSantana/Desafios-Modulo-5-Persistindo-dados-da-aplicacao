@@ -15,7 +15,7 @@
             </form>
         </div>
         
-        <table width="100%">
+        <table id="table-students" width="100%">
             <thead>
                 <tr>
                     <th>student</th>
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 {% for student in students %}
-                    <tr>
+                    <tr id="table-students" >
                         <td><span style="background-image: url({{student.avatar_url}})" ></span></td>
                         <td>{{student.name}}</td>                        
                         <td><a href="/students/{{student.id}}">ir</a></td>
