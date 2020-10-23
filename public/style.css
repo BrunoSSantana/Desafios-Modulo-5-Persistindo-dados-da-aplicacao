@@ -63,7 +63,7 @@ header {
 .card {
     position: relative;
     background-color: var(--white);
-    max-width: 70%;
+    max-width: 60%;
     min-height: 400px;
 
     margin: 20px auto;
@@ -127,16 +127,16 @@ header {
 }
 
 
-/*estilizar o label (ex.: Desde)*/
-.details .item:nth-child(8) div:first-child {
+/*styling o label (ex.: Desde)*/
+.details .item:nth-child(9) div:first-child {
     padding-top: 10px;
     font-weight: 300;    
     font-size: 12pt;
     text-align: right;
     border: none;
 }
-/* valor (ex.: 02/02/2020) */
-.details .item:nth-child(8) div+div {
+/* styling value */
+.details .item:nth-child(9) div+div {
     font-size: 12pt;
     font-weight: 500;
     text-align: right;
@@ -170,11 +170,34 @@ input[type="email"] {
     color: var(--white);
 }
 
+/* type="numer" remove arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* select personalization */
+select{
+    /* reset */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height:100%;
+    /* custon */
+    background: url(./assets/chevron-down-solid.svg) no-repeat transparent;
+    background-position: right center;
+}
 
 
 input::placeholder {
     color: var(--white);
 }
+.header a,
 .table-container > a,
 button[type="submit"],
 a.button {
@@ -215,21 +238,50 @@ a.button {
 table {
     border-collapse: unset;
 }
-
-table thead tr{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+#table-students thead th:first-child {
     text-align: left;
-    padding: 8px 16px;
 }
-table thead tr th:last-child {
+#table-teachers thead th {
     text-align: center;
 }
-table tbody tr{
+#table-teachers thead th:first-child {
+    text-align: left;
+}
+#table-teachers thead th:nth-child(2) {
+    text-align: left;
+}
+#table-teachers thead tr{
     display: grid;
-    grid-template-columns: 0.2fr 1.8fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    text-align: left;
+    height: 25px;
+}
+#table-students thead tr{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    text-align: center;
+    height: 25px;
+}
+table thead tr th:nth-child(3) {
+    text-align: center;
+}
+table thead tr th:nth-child(4) {
+    text-align: center;
+}
+#table-teachers tbody tr{
+    display: grid;
+    grid-template-columns: 0.33fr 1.8fr 1fr 1fr 1fr;
     grid-template-rows: 80px;
     align-items: center;
+}
+#table-students tbody tr{
+    display: grid;
+    grid-template-columns: 0.33fr 1.8fr 1fr;
+    grid-template-rows: 80px;
+    align-items: center;
+}
+table tbody tr td:nth-child(4) {
+    text-align: center;
 }
 table tbody tr td:last-child {
     text-align: center;
@@ -257,6 +309,12 @@ tbody tr td:first-child {
     display: grid;
     grid-template-columns: 1fr;
 }
+tbody tr td:last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 tbody tr td:first-child span{
     height: 40px;
     width: 40px;
@@ -264,9 +322,35 @@ tbody tr td:first-child span{
     background-size: cover;
     border-radius: 50%;
 }
-
 .table-container a {
     display: block;
     width: 60px;
     text-decoration: none;
+}
+
+/*filters*/
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.header form {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    align-items: center;
+}
+.header form button {
+    margin: 0 0 0 8px;
+}
+.header form input {
+    padding: 4px 8px;
+    background-color: white;
+    border: 1px solid #eee;
+    color: var(--gray);
+
+}
+.header form input::placeholder {
+    color: var(--gray);
 }
