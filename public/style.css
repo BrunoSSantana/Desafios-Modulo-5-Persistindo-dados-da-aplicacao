@@ -170,6 +170,17 @@ input[type="email"] {
     color: var(--white);
 }
 
+/* type="numer" remove arrows */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* select personalization */
 select{
     /* reset */
     -webkit-appearance: none;

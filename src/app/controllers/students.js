@@ -9,8 +9,8 @@ module.exports = {
     },
     create(req, res) {
         student.teacherOptions(function(options){
-            console.log(options)
-            return res.render('students/create', {options})
+            // console.log(options)
+            return res.render('students/create', {teacherOptions:options})
         })
     },
     post(req, res) {

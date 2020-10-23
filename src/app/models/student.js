@@ -88,7 +88,8 @@ module.exports = {
     teacherOptions(callback){
         db.query(`
         SELECT name, id
-        FROM teachers 
+        FROM teachers
+        ORDER BY name
         `, function(err, results){
             if(err) throw `Database Error! ${err}`
 
