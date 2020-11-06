@@ -5,6 +5,7 @@
     <div class="card table-container">
         <div class="header">
             <a href="/teachers/create">New</a>
+            
             <form action="/teachers" method="GET">
                 <input
                 type="text"
@@ -36,6 +37,12 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div class="pagination"
+            data-page={{pagination.page}}
+            data-total={{pagination.total}}
+            data-filter={{pagination.filter}}
+        ></div>
         
     </div>
     
