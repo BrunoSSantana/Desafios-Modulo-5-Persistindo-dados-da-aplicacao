@@ -42,7 +42,8 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT students.*, teachers.name AS teacher_name
+        db.query(`
+        SELECT students.*, teachers.name AS teacher_name
         FROM students
         LEFT JOIN teachers ON (students.teacher_id = teachers.id)
         WHERE students.id = $1`, [id], function(err, results){
@@ -50,7 +51,7 @@ module.exports = {
             callback(results.rows[0])
         })
     },
-    update(data, calback){
+    update(data, calback){  
         const query = `
         UPDATE students SET
             name=($1),

@@ -63,7 +63,7 @@ module.exports = {
     },
     edit(req, res) {
         student.find(req.params.id, function(students){
-            if(!student) return res.send("Student not found!")
+            if(!students) return res.send("Student noooot found!")
 
             students.birth_date = date(students.birth_date).iso
 
